@@ -19,5 +19,5 @@ phases:
       - aws s3 cp lambda_function.zip s3://lmabd-testing/lambda_function.zip
       - echo "Build completed successfully, and the Lambda function is uploaded to S3."
 
-      - aws lambda update-function-code --function-name testing --s3-bucket lmabd-testing --s3-key lambda_function.zip
+      - aws lambda update-function-code --function-name AWS_Lambda_ci_cd --s3-bucket lmabd-testing --s3-key lambda_function.zip
       - echo "Lambda function code updated successfully."
