@@ -12,7 +12,7 @@ phases:
       - cd lib
       - zip -r ../lambda_function.zip .
       - cd ..
-      - zip -g lambda_function.zip lambda_function.py
+      - zip -g lambda_function.zip lambda_funtion.py
   
   post_build:
     commands:
