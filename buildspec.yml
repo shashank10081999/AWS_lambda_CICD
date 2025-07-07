@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Building the Lambda function..."
+      - pip install -r requirements.txt -t lib
+  build:
+    commands:
+      - cd lib
+      - zip -r ../lambda_function.zip .
+      - cd ..
+      - zip -g lambda_function.zip lambda_function.py
+  
+  post_build:
+    commands:
+      - aws s3 cp lambda_function.zip s3://lmabd-testing/lambda_function.zip
+      - echo "Build completed successfully, and the Lambda function is uploaded to S3."
+
+      - aws lambda update-function-code --function-name testing --s3-bucket lmabd-testing --s3-key lambda_function.zip
+      - echo "Lambda function code updated successfully."
